@@ -6,9 +6,14 @@ const Settings = {
   ERRORS_COUNT: 3
 };
 
+const onWelcomeButtonClick = () => {
+  // Клик по кнопке на WelcomScreen
+};
+
 ReactDom.render(
     <App
-      errorsCount = {Settings.ERRORS_COUNT}
+      errorsCount={Settings.ERRORS_COUNT}
+      onWelcomeButtonClick={onWelcomeButtonClick}
     />,
     document.querySelector(`#root`)
 );

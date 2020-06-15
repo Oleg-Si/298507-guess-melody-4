@@ -16,6 +16,7 @@ exports[`WelcomScreen should render error count = 3 1`] = `
   </div>
   <button
     className="welcome__button"
+    onClick={[Function]}
   >
     <span
       className="visually-hidden"
