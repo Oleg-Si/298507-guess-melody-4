@@ -16,14 +16,13 @@ class App extends PureComponent {
   }
 
   _renderGame() {
-    const {errorsCount, questions} = this.props;
+    const {questions} = this.props;
     const currentScreen = this.state.currentScreen;
     const data = questions[currentScreen];
 
     if (currentScreen === -1 || currentScreen >= questions.length) {
       return (
         <WelcomeScreen
-          errorsCount={errorsCount}
           onWelcomeButtonClick={() => this.setState({currentScreen: 0})}
         />
       );
@@ -79,7 +78,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired
