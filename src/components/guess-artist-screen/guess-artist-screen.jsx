@@ -8,8 +8,8 @@ const svgCircleStyles = {
 };
 
 const GuessArtistScreen = (props) => {
-  const {data, onAnswer} = props;
-  const {song, answers} = data;
+  const {question, onAnswer} = props;
+  const {song, answers} = question;
 
   return (
     <section className="game game--artist">
@@ -63,7 +63,7 @@ const GuessArtistScreen = (props) => {
 };
 
 GuessArtistScreen.propTypes = {
-  data: PropTypes.shape({
+  question: PropTypes.shape({
     type: PropTypes.string.isRequired,
     song: PropTypes.shape({
       artist: PropTypes.string.isRequired,

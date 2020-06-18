@@ -17,7 +17,7 @@ class GuessGenreScreen extends PureComponent {
   }
 
   _getAnswerTemplate() {
-    const count = this.props.data.answers.length;
+    const count = this.props.question.answers.length;
     const arr = [];
 
     for (let i = 0; i < count; i++) {
@@ -28,8 +28,8 @@ class GuessGenreScreen extends PureComponent {
   }
 
   render() {
-    const {data, onAnswer} = this.props;
-    const {genre, answers} = data;
+    const {question, onAnswer} = this.props;
+    const {genre, answers} = question;
 
     return (
       <section className="game game--genre">
@@ -54,7 +54,7 @@ class GuessGenreScreen extends PureComponent {
           <h2 className="game__title">Выберите {genre} треки</h2>
           <form className="game__tracks" onSubmit={(evt) => {
             evt.preventDefault();
-            onAnswer(data, this.state.answer);
+            onAnswer(question, this.state.answer);
           }}>
 
             {answers.map((el) => {
@@ -87,7 +87,7 @@ class GuessGenreScreen extends PureComponent {
 }
 
 GuessGenreScreen.propTypes = {
-  data: PropTypes.shape({
+  question: PropTypes.shape({
     type: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     answers: PropTypes.arrayOf(
