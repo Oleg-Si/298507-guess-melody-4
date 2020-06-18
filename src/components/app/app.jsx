@@ -18,29 +18,27 @@ class App extends PureComponent {
   _renderGame() {
     const {questions} = this.props;
     const currentScreen = this.state.currentScreen;
-    const data = questions[currentScreen];
+    const question = questions[currentScreen];
 
     if (currentScreen === -1 || currentScreen >= questions.length) {
       return (
-        <WelcomeScreen
-          onWelcomeButtonClick={() => this.setState({currentScreen: 0})}
-        />
+        <WelcomeScreen onWelcomeButtonClick={() => this.setState({currentScreen: 0})} />
       );
     }
 
-    if (data) {
-      switch (data.type) {
+    if (question) {
+      switch (question.type) {
         case GameType.ARTIST:
           return (
             <GuessArtistScreen
-              data={data}
+              question={question}
               onAnswer={() => this.setState((prevState) => ({currentScreen: prevState.currentScreen + 1}))}
             />
           );
         case GameType.GENRE:
           return (
             <GuessGenreScreen
-              data={data}
+              question={question}
               onAnswer={() => this.setState((prevState) => ({currentScreen: prevState.currentScreen + 1}))}
             />
           );
@@ -61,13 +59,13 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/artist">
             <GuessArtistScreen
-              data={questions[0]}
+              question={questions[1]}
               onAnswer={() => {}}
             />
           </Route>
           <Route exact path="/genre">
             <GuessGenreScreen
-              data={questions[1]}
+              question={questions[0]}
               onAnswer={() => {}}
             />
           </Route>
