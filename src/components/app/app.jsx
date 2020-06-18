@@ -76,11 +76,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  questions: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string.isRequired
-      })
-  )
+  questions: PropTypes.array.isRequired
 };
 
 export default App;
