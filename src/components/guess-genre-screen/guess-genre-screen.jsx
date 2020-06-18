@@ -19,9 +19,11 @@ class GuessGenreScreen extends PureComponent {
   _getAnswerTemplate() {
     const count = this.props.data.answers.length;
     const arr = [];
+
     for (let i = 0; i < count; i++) {
       arr.push(false);
     }
+
     return arr;
   }
 
@@ -55,22 +57,22 @@ class GuessGenreScreen extends PureComponent {
             onAnswer(data, this.state.answer);
           }}>
 
-            {answers.map((el, i) => {
+            {answers.map((el) => {
               return (
-                <div className="track" key={el + i}>
+                <div className="track" key={el.id}>
                   <button className="track__button track__button--play" type="button"></button>
                   <div className="track__status">
                     <audio src={el.src}></audio>
                   </div>
                   <div className="game__answer">
-                    <input className="game__input visually-hidden" type="checkbox" name="answer" value={el.genre} id={`answer-${i}`} onChange={() => {
+                    <input className="game__input visually-hidden" type="checkbox" name="answer" value={el.genre} id={`answer-${el.id}`} onChange={() => {
                       const oldState = this.state.answer;
-                      oldState[i] = !oldState[i];
+                      oldState[el.id] = !oldState[el.id];
                       const newState = oldState;
                       this.setState({answers: newState});
                     }
                     }/>
-                    <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
+                    <label className="game__check" htmlFor={`answer-${el.id}`}>Отметить</label>
                   </div>
                 </div>
               );
@@ -90,6 +92,7 @@ GuessGenreScreen.propTypes = {
     genre: PropTypes.string.isRequired,
     answers: PropTypes.arrayOf(
         PropTypes.shape({
+          id: PropTypes.number.isRequired,
           src: PropTypes.string.isRequired,
           genre: PropTypes.string.isRequired
         }).isRequired

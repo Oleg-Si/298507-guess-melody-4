@@ -9,10 +9,7 @@ const svgCircleStyles = {
 
 const GuessArtistScreen = (props) => {
   const {data, onAnswer} = props;
-  const {
-    song,
-    answers
-  } = data;
+  const {song, answers} = data;
 
   return (
     <section className="game game--artist">
@@ -45,14 +42,14 @@ const GuessArtistScreen = (props) => {
         </div>
 
         <form className="game__artist">
-          {answers.map((el, i) => {
+          {answers.map((el) => {
             return (
-              <div className="artist" key={el + i}>
-                <input className="artist__input visually-hidden" type="radio" name="answer" value={`artist-${i}`} id={`answer-${i}`} onChange={(evt) => {
+              <div className="artist" key={el.id}>
+                <input className="artist__input visually-hidden" type="radio" name="answer" value={`artist-${el.id}`} id={`answer-${el.id}`} onChange={(evt) => {
                   evt.preventDefault();
                   onAnswer(song, el);
                 }}/>
-                <label className="artist__name" htmlFor={`answer-${i}`}>
+                <label className="artist__name" htmlFor={`answer-${el.id}`}>
                   <img className="artist__picture" src={el.picture} alt={el.artist}/>
                   {el.artist}
                 </label>
@@ -74,6 +71,7 @@ GuessArtistScreen.propTypes = {
     }).isRequired,
     answers: PropTypes.arrayOf(
         PropTypes.shape({
+          id: PropTypes.number.isRequired,
           picture: PropTypes.string.isRequired,
           artist: PropTypes.string.isRequired
         }).isRequired
