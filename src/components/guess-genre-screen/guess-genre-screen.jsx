@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import withAudioPlayer from '../../hocs/with-audio-player.jsx';
 
 class GuessGenreScreen extends PureComponent {
   constructor(props) {
@@ -22,7 +23,7 @@ class GuessGenreScreen extends PureComponent {
   }
 
   render() {
-    const {question, onAnswer} = this.props;
+    const {question, onAnswer, renderPlayer} = this.props;
     const {genre, answers} = question;
 
     return (
@@ -33,13 +34,12 @@ class GuessGenreScreen extends PureComponent {
           onAnswer(question, this.state.answer);
         }}>
 
-          {answers.map((el) => {
+          {answers.map((el, i) => {
             return (
               <div className="track" key={el.id}>
-                <button className="track__button track__button--play" type="button"></button>
-                <div className="track__status">
-                  <audio src={el.src}></audio>
-                </div>
+
+                {renderPlayer(el.src, i)}
+
                 <div className="game__answer">
                   <input className="game__input visually-hidden" type="checkbox" name="answer" value={el.genre} id={`answer-${el.id}`} onChange={() => {
                     const oldState = this.state.answer;
@@ -73,7 +73,9 @@ GuessGenreScreen.propTypes = {
         }).isRequired
     ).isRequired
   }).isRequired,
-  onAnswer: PropTypes.func.isRequired
+  onAnswer: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired
 };
 
-export default GuessGenreScreen;
+export const defaultGuessGenreScreen = GuessGenreScreen;
+export default withAudioPlayer(GuessGenreScreen);
