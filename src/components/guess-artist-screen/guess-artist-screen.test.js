@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import GuessArtistScreen from './guess-artist-screen.jsx';
+import {defaultGuessArtistScreen as GuessArtistScreen} from './guess-artist-screen.jsx';
 
 const question = {
   type: `artist`,
@@ -27,13 +27,12 @@ const question = {
   ],
 };
 
-const onAnswer = () => {};
-
 it(`GuessArtistScreen should render gameScreen selection artist`, () => {
   const tree = renderer.create(
       <GuessArtistScreen
         question={question}
-        onAnswer={onAnswer}
+        onAnswer={() => {}}
+        renderPlayer={() => {}}
       />
   ).toJSON();
 

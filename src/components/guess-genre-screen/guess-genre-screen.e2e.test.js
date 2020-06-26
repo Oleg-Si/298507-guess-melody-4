@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import GuessGenreScreen from './guess-genre-screen.jsx';
+import {defaultGuessGenreScreen as GuessGenreScreen} from './guess-genre-screen.jsx';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -41,6 +41,7 @@ it(`When user answers genre question form is not send`, () => {
       <GuessGenreScreen
         question={question}
         onAnswer={onAnswer}
+        renderPlayer={() => {}}
       />
   );
 
@@ -61,6 +62,7 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
       <GuessGenreScreen
         question={question}
         onAnswer={onAnswer}
+        renderPlayer={() => {}}
       />
   );
 
