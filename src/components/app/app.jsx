@@ -63,16 +63,20 @@ class App extends PureComponent {
             {this._renderGame()}
           </Route>
           <Route exact path="/artist">
-            <GuessArtistScreen
-              question={questions[1]}
-              onAnswer={() => {}}
-            />
+            <GameScreen type={GameType.ARTIST}>
+              <GuessArtistScreen
+                question={questions[1]}
+                onAnswer={() => {}}
+              />
+            </GameScreen>
           </Route>
           <Route exact path="/genre">
-            <GuessGenreScreen
-              question={questions[0]}
-              onAnswer={() => {}}
-            />
+            <GameScreen type={GameType.GENRE}>
+              <GuessGenreScreen
+                question={questions[0]}
+                onAnswer={() => {}}
+              />
+            </GameScreen>
           </Route>
         </Switch>
       </BrowserRouter>
