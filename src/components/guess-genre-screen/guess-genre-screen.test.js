@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import GuessGenreScreen from './guess-genre-screen.jsx';
+import {defaultGuessGenreScreen as GuessGenreScreen} from './guess-genre-screen.jsx';
 
 const question = {
   type: `genre`,
@@ -29,13 +29,12 @@ const question = {
   ],
 };
 
-const onAnswer = () => {};
-
 it(`GuessGenreScreen should render gameScreen selection genre`, () => {
   const tree = renderer.create(
       <GuessGenreScreen
         question={question}
-        onAnswer={onAnswer}
+        onAnswer={() => {}}
+        renderPlayer={() => {}}
       />
   ).toJSON();
 

@@ -12,17 +12,17 @@ export default [
       },
       {
         id: 1,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: `https://ru-drivemusic.net/dl/U96HV5OOndnnyglkRXcuVQ/1581984519/download_music/novogodnie_pesni/abba-happy-new-year.mp3`,
         genre: `blues`,
       },
       {
         id: 2,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: `https://mp3name.net/music/7694-twenty-one-pilots-stressed-out.mp3`,
         genre: `jazz`,
       },
       {
         id: 3,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: `https://mp3name.net/music/41700-twenty-one-pilots-ride.mp3`,
         genre: `rock`,
       }
     ],
@@ -31,7 +31,7 @@ export default [
     type: `artist`,
     song: {
       artist: `Jim Beam`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+      src: `https://mp3name.net/music/61956-twenty-one-pilots-level-of-concern.mp3`,
     },
     answers: [
       {
