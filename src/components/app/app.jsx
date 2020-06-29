@@ -14,6 +14,12 @@ class App extends PureComponent {
     this.state = {
       currentScreen: -1
     };
+
+    this._incScreen = this._incScreen.bind(this);
+  }
+
+  _incScreen() {
+    this.setState((prevState) => ({currentScreen: prevState.currentScreen + 1}));
   }
 
   _renderGame() {
@@ -34,7 +40,7 @@ class App extends PureComponent {
             <GameScreen type={question.type}>
               <GuessArtistScreen
                 question={question}
-                onAnswer={() => this.setState((prevState) => ({currentScreen: prevState.currentScreen + 1}))}
+                onAnswer={this._incScreen}
               />
             </GameScreen>
           );
@@ -43,7 +49,7 @@ class App extends PureComponent {
             <GameScreen type={question.type}>
               <GuessGenreScreen
                 question={question}
-                onAnswer={() => this.setState((prevState) => ({currentScreen: prevState.currentScreen + 1}))}
+                onAnswer={this._incScreen}
               />
             </GameScreen>
           );

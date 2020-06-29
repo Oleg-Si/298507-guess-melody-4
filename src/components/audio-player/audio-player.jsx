@@ -41,10 +41,26 @@ class AudioPlayer extends PureComponent {
     audio.src = ``;
   }
 
+  _checkAudioReady() {
+    if (this.state.isReady) {
+      return customStyle;
+    }
+
+    return {};
+  }
+
+  _getButtonClassName() {
+    if (this.props.isPlaying) {
+      return `track__button--pause`;
+    }
+
+    return `track__button--play`;
+  }
+
   render() {
     return (
       <React.Fragment>
-        <button className={`track__button track__button--${this.props.isPlaying ? `pause` : `play`}`} type="button" style={this.state.isReady ? customStyle : {}} disabled={this.state.isReady} onClick={() => {
+        <button className={`track__button ${this._getButtonClassName()}`} type="button" style={this._checkAudioReady()} disabled={this.state.isReady} onClick={() => {
           this.setState((prevState) => ({isPlaying: !prevState.isPlaying}));
           this.props.onButtonClick();
         }}></button>
