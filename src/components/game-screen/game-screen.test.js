@@ -7,7 +7,10 @@ const children = <div className="children-component"></div>;
 
 it(`GameScreen component render correctly`, () => {
   const tree = renderer.create(
-      <GameScreen type={GameType.ARTIST}>
+      <GameScreen
+        type={GameType.ARTIST}
+        mistakesCount={3}
+      >
         {children}
       </GameScreen>
   ).toJSON();
