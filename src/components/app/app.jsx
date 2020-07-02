@@ -14,8 +14,6 @@ class App extends PureComponent {
     const {questions, step, mistakesCount, onWelcomeButtonClick, onAnswer} = this.props;
     const question = questions[step];
 
-    console.log(mistakesCount);
-
     if (step === -1 || step >= questions.length) {
       return (
         <WelcomeScreen onWelcomeButtonClick={onWelcomeButtonClick} />
@@ -26,7 +24,10 @@ class App extends PureComponent {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <GameScreen type={question.type}>
+            <GameScreen
+              type={question.type}
+              mistakesCount={mistakesCount}
+            >
               <GuessArtistScreen
                 question={question}
                 onAnswer={onAnswer}
@@ -35,7 +36,10 @@ class App extends PureComponent {
           );
         case GameType.GENRE:
           return (
-            <GameScreen type={question.type}>
+            <GameScreen
+              type={question.type}
+              mistakesCount={mistakesCount}
+            >
               <GuessGenreScreen
                 question={question}
                 onAnswer={onAnswer}
@@ -58,7 +62,10 @@ class App extends PureComponent {
             {this._renderGame()}
           </Route>
           <Route exact path="/artist">
-            <GameScreen type={GameType.ARTIST}>
+            <GameScreen
+              type={GameType.ARTIST}
+              mistakesCount={2}
+            >
               <GuessArtistScreen
                 question={questions[1]}
                 onAnswer={() => {}}
@@ -66,7 +73,10 @@ class App extends PureComponent {
             </GameScreen>
           </Route>
           <Route exact path="/genre">
-            <GameScreen type={GameType.GENRE}>
+            <GameScreen
+              type={GameType.GENRE}
+              mistakesCount={2}
+            >
               <GuessGenreScreen
                 question={questions[0]}
                 onAnswer={() => {}}
@@ -97,7 +107,8 @@ const mapDispatchToProps = (dispatch) => ({
   onWelcomeButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },
-  onAnswer() {
+  onAnswer(question, answer) {
+    dispatch(ActionCreator.incrementMistakes(question, answer));
     dispatch(ActionCreator.incrementStep());
   }
 });

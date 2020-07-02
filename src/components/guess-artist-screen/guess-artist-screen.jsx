@@ -23,7 +23,7 @@ const GuessArtistScreen = (props) => {
             <div className="artist" key={el.id}>
               <input className="artist__input visually-hidden" type="radio" name="answer" value={`artist-${el.id}`} id={`answer-${el.id}`} onChange={(evt) => {
                 evt.preventDefault();
-                onAnswer(song, el);
+                onAnswer(question, el);
               }}/>
               <label className="artist__name" htmlFor={`answer-${el.id}`}>
                 <img className="artist__picture" src={el.picture} alt={el.artist}/>
