@@ -1,6 +1,58 @@
-import questions from './mocks/questions';
 import {extend} from './utils';
 import {GameType} from './constants';
+
+const questions = [
+  {
+    type: `genre`,
+    genre: `rock`,
+    answers: [
+      {
+        id: 0,
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `rock`,
+      },
+      {
+        id: 1,
+        src: `https://ru-drivemusic.net/dl/U96HV5OOndnnyglkRXcuVQ/1581984519/download_music/novogodnie_pesni/abba-happy-new-year.mp3`,
+        genre: `blues`,
+      },
+      {
+        id: 2,
+        src: `https://mp3name.net/music/7694-twenty-one-pilots-stressed-out.mp3`,
+        genre: `jazz`,
+      },
+      {
+        id: 3,
+        src: `https://mp3name.net/music/41700-twenty-one-pilots-ride.mp3`,
+        genre: `rock`,
+      }
+    ],
+  },
+  {
+    type: `artist`,
+    song: {
+      artist: `Jim Beam`,
+      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+    },
+    answers: [
+      {
+        id: 1,
+        picture: `//picsum.photos/134/134?r=34`,
+        artist: `Chivas Regal`,
+      },
+      {
+        id: 2,
+        picture: `//picsum.photos/134/134?r=35`,
+        artist: `Jack Daniels`,
+      },
+      {
+        id: 3,
+        picture: `//picsum.photos/134/134?r=36`,
+        artist: `Jim Beam`,
+      }
+    ],
+  }
+];
 
 const initialState = {
   mistakesCount: 0,
