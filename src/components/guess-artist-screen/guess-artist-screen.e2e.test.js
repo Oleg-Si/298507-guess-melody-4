@@ -2,35 +2,11 @@ import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {defaultGuessArtistScreen as GuessArtistScreen} from './guess-artist-screen.jsx';
+import {questionArtistForTest} from '../../mocks/questions.js';
 
 Enzyme.configure({
   adapter: new Adapter()
 });
-
-const question = {
-  type: `artist`,
-  song: {
-    artist: `Jim Beam`,
-    src: ``,
-  },
-  answers: [
-    {
-      id: 1,
-      picture: `//picsum.photos/134/134?r=34`,
-      artist: `Chivas Regal`,
-    },
-    {
-      id: 2,
-      picture: `//picsum.photos/134/134?r=35`,
-      artist: `Jack Daniels`,
-    },
-    {
-      id: 3,
-      picture: `//picsum.photos/134/134?r=36`,
-      artist: `Jim Beam`,
-    }
-  ],
-};
 
 const mockEvent = {
   preventDefault() {}
@@ -46,7 +22,7 @@ it(`Click on user answer should pass to the callback data-object from which this
 
   const guessArtistScreen = shallow(
       <GuessArtistScreen
-        question={question}
+        question={questionArtistForTest}
         onAnswer={onAnswer}
         renderPlayer={() => {}}
       />
@@ -59,7 +35,7 @@ it(`Click on user answer should pass to the callback data-object from which this
 
   expect(onAnswer).toHaveBeenCalledTimes(1);
 
-  expect(onAnswer.mock.calls[0][0]).toMatchObject(question);
+  expect(onAnswer.mock.calls[0][0]).toMatchObject(questionArtistForTest);
   expect(onAnswer.mock.calls[0][1]).toMatchObject(userAnswer);
 
 });
