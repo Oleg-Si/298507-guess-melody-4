@@ -7,7 +7,7 @@ import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen.jsx';
 import {GameType} from './../../constants';
 import GameScreen from '../game-screen/game-screen.jsx';
 import {connect} from "react-redux";
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../redux/action-creator';
 
 class App extends PureComponent {
   _renderGame() {
