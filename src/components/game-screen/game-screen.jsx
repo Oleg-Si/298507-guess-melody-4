@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {GameType} from './../../constants';
+import Mistakes from '../mistakes/mistakes.jsx';
 
 const svgCircleStyles = {
   filter: `url(#blur)`,
@@ -9,7 +10,7 @@ const svgCircleStyles = {
 };
 
 const GameScreen = (props) => {
-  const {type, children} = props;
+  const {type, children, mistakesCount} = props;
 
   return (
     <section className={`game game--${type}`}>
@@ -23,11 +24,7 @@ const GameScreen = (props) => {
           <circle className="timer__line" cx="390" cy="390" r="370" style={svgCircleStyles}/>
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-        </div>
+        <Mistakes mistakesCount={mistakesCount} />
       </header>
 
       {children}
@@ -37,7 +34,8 @@ const GameScreen = (props) => {
 
 GameScreen.propTypes = {
   type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]),
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  mistakesCount: PropTypes.number.isRequired
 };
 
 export default GameScreen;

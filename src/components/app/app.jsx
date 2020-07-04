@@ -6,24 +6,17 @@ import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen.jsx';
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen.jsx';
 import {GameType} from './../../constants';
 import GameScreen from '../game-screen/game-screen.jsx';
+import {connect} from "react-redux";
+import {ActionCreator} from '../../redux/action-creator';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentScreen: -1
-    };
-  }
-
   _renderGame() {
-    const {questions} = this.props;
-    const currentScreen = this.state.currentScreen;
-    const question = questions[currentScreen];
+    const {questions, step, mistakesCount, onWelcomeButtonClick, onAnswer} = this.props;
+    const question = questions[step];
 
-    if (currentScreen === -1 || currentScreen >= questions.length) {
+    if (step === -1 || step >= questions.length) {
       return (
-        <WelcomeScreen onWelcomeButtonClick={() => this.setState({currentScreen: 0})} />
+        <WelcomeScreen onWelcomeButtonClick={onWelcomeButtonClick} />
       );
     }
 
@@ -31,19 +24,25 @@ class App extends PureComponent {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <GameScreen type={question.type}>
+            <GameScreen
+              type={question.type}
+              mistakesCount={mistakesCount}
+            >
               <GuessArtistScreen
                 question={question}
-                onAnswer={() => this.setState((prevState) => ({currentScreen: prevState.currentScreen + 1}))}
+                onAnswer={onAnswer}
               />
             </GameScreen>
           );
         case GameType.GENRE:
           return (
-            <GameScreen type={question.type}>
+            <GameScreen
+              type={question.type}
+              mistakesCount={mistakesCount}
+            >
               <GuessGenreScreen
                 question={question}
-                onAnswer={() => this.setState((prevState) => ({currentScreen: prevState.currentScreen + 1}))}
+                onAnswer={onAnswer}
               />
             </GameScreen>
           );
@@ -63,7 +62,10 @@ class App extends PureComponent {
             {this._renderGame()}
           </Route>
           <Route exact path="/artist">
-            <GameScreen type={GameType.ARTIST}>
+            <GameScreen
+              type={GameType.ARTIST}
+              mistakesCount={2}
+            >
               <GuessArtistScreen
                 question={questions[1]}
                 onAnswer={() => {}}
@@ -71,7 +73,10 @@ class App extends PureComponent {
             </GameScreen>
           </Route>
           <Route exact path="/genre">
-            <GameScreen type={GameType.GENRE}>
+            <GameScreen
+              type={GameType.GENRE}
+              mistakesCount={2}
+            >
               <GuessGenreScreen
                 question={questions[0]}
                 onAnswer={() => {}}
@@ -85,7 +90,29 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  questions: PropTypes.array.isRequired
+  questions: PropTypes.array.isRequired,
+  step: PropTypes.number.isRequired,
+  mistakesCount: PropTypes.number.isRequired,
+  onWelcomeButtonClick: PropTypes.func.isRequired,
+  onAnswer: PropTypes.func.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  step: state.step,
+  mistakesCount: state.mistakesCount,
+  questions: state.questions
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onWelcomeButtonClick() {
+    dispatch(ActionCreator.incrementStep());
+  },
+  onAnswer(question, answer) {
+    dispatch(ActionCreator.incrementMistakes(question, answer));
+    dispatch(ActionCreator.incrementStep());
+  }
+});
+
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
