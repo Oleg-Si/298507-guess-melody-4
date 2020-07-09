@@ -83,9 +83,7 @@ exports[`Render ArtistGameScreen 1`] = `
         <div
           className="track__status"
         >
-          <audio
-            autoPlay={true}
-          />
+          <audio />
         </div>
       </div>
     </div>
@@ -252,9 +250,7 @@ exports[`Render GenreGameScreen 1`] = `
         <div
           className="track__status"
         >
-          <audio
-            autoPlay={true}
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -292,9 +288,7 @@ exports[`Render GenreGameScreen 1`] = `
         <div
           className="track__status"
         >
-          <audio
-            autoPlay={false}
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -332,9 +326,7 @@ exports[`Render GenreGameScreen 1`] = `
         <div
           className="track__status"
         >
-          <audio
-            autoPlay={false}
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -372,9 +364,7 @@ exports[`Render GenreGameScreen 1`] = `
         <div
           className="track__status"
         >
-          <audio
-            autoPlay={false}
-          />
+          <audio />
         </div>
         <div
           className="game__answer"

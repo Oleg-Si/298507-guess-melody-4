@@ -16,9 +16,7 @@ Array [
   <div
     className="track__status"
   >
-    <audio
-      autoPlay={true}
-    />
+    <audio />
   </div>,
 ]
 `;
