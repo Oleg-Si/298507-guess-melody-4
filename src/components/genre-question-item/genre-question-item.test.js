@@ -1,13 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {defaultGuessGenreScreen as GuessGenreScreen} from './guess-genre-screen.jsx';
 import {questionGenreForTest} from '../../mocks/questions.js';
+import GenreQuestionItem from './genre-question-item.jsx';
 
-it(`GuessGenreScreen should render gameScreen selection genre`, () => {
+it(`GenreQuestionItem is rendered correctly`, () => {
   const tree = renderer.create(
-      <GuessGenreScreen
-        question={questionGenreForTest}
-        onSubmit={() => {}}
+      <GenreQuestionItem
+        id={0}
+        answer={questionGenreForTest.answers[0]}
         onChange={() => {}}
         renderPlayer={() => {}}
       />
