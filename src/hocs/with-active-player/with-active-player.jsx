@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
-import AudioPlayer from './../components/audio-player/audio-player.jsx';
+import AudioPlayer from '../../components/audio-player/audio-player.jsx';
 
-const withAudioPlayer = (Component) => {
+const withActivePlayer = (Component) => {
   class WithAudioPlayer extends PureComponent {
     constructor(props) {
       super(props);
@@ -22,9 +22,11 @@ const withAudioPlayer = (Component) => {
               <AudioPlayer
                 src={src}
                 isPlaying={id === activePlayerId}
-                onButtonClick={() => this.setState({
-                  activePlayerId: activePlayerId === id ? -1 : id
-                })}
+                onButtonClick={() => {
+                  this.setState({
+                    activePlayerId: activePlayerId === id ? -1 : id
+                  });
+                }}
               />
             );
           }}
@@ -38,4 +40,4 @@ const withAudioPlayer = (Component) => {
   return WithAudioPlayer;
 };
 
-export default withAudioPlayer;
+export default withActivePlayer;
