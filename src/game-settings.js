@@ -1,3 +1,3 @@
 export const GameSettings = {
-  ERRORS_COUNT: 3
+  MAX_MISTAKES_COUNT: 3
 };
