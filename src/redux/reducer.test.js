@@ -1,7 +1,7 @@
 import reducer from './reducer';
 import {ActionType} from './action-type';
 import {ActionCreator} from './action-creator';
-import {questionsForTest} from '../mocks/questions';
+import questions, {questionsForTest} from '../mocks/questions';
 
 describe(`Reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -10,7 +10,7 @@ describe(`Reducer work correctly`, () => {
       maxMistakesCount: 3,
       questionId: 0,
       step: -1,
-      questions: questionsForTest
+      questions
     });
   });
 

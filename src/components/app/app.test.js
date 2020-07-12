@@ -20,6 +20,7 @@ it(`Render WelcomeScreen`, () => {
           onWelcomeButtonClick={onWelcomeButtonClick}
           questions={questionsForTest}
           onAnswer={() => {}}
+          onResetGame={() => {}}
           mistakesCount={3}
           step={-1}
         />
@@ -40,7 +41,8 @@ it(`Render GenreGameScreen`, () => {
           onWelcomeButtonClick={onWelcomeButtonClick}
           questions={questionsForTest}
           onAnswer={() => {}}
-          mistakesCount={3}
+          onResetGame={() => {}}
+          mistakesCount={1}
           step={0}
         />
       </Provider>, {
@@ -65,7 +67,8 @@ it(`Render ArtistGameScreen`, () => {
           onWelcomeButtonClick={onWelcomeButtonClick}
           questions={questionsForTest}
           onAnswer={() => {}}
-          mistakesCount={3}
+          onResetGame={() => {}}
+          mistakesCount={1}
           step={1}
         />
       </Provider>, {

@@ -47,12 +47,6 @@ exports[`Render ArtistGameScreen 1`] = `
       <div
         className="wrong"
       />
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
     </div>
   </header>
   <section
@@ -208,12 +202,6 @@ exports[`Render GenreGameScreen 1`] = `
     <div
       className="game__mistakes"
     >
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
       <div
         className="wrong"
       />
