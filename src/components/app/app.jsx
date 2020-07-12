@@ -8,15 +8,34 @@ import {GameType} from './../../constants';
 import GameScreen from '../game-screen/game-screen.jsx';
 import {connect} from "react-redux";
 import {ActionCreator} from '../../redux/action-creator';
+import {GameSettings} from './../../game-settings';
+import GameOverScreen from '../game-over-screen/game-over-screen.jsx';
+import GameWinScreen from '../game-win-screen/game-win-screen.jsx';
 
 class App extends PureComponent {
   _renderGame() {
-    const {questions, step, mistakesCount, onWelcomeButtonClick, onAnswer} = this.props;
+    const {questions, step, mistakesCount, onWelcomeButtonClick, onAnswer, onResetGame} = this.props;
     const question = questions[step];
 
-    if (step === -1 || step >= questions.length) {
+    if (step === -1) {
       return (
         <WelcomeScreen onWelcomeButtonClick={onWelcomeButtonClick} />
+      );
+    }
+
+    if (mistakesCount >= GameSettings.MAX_MISTAKES_COUNT) {
+      return (
+        <GameOverScreen onButtonClick={onResetGame} />
+      );
+    }
+
+    if (step >= questions.length) {
+      return (
+        <GameWinScreen
+          onButtonClick={onResetGame}
+          mistakesCount={mistakesCount}
+          questionsCount={questions.length}
+        />
       );
     }
 
@@ -94,7 +113,8 @@ App.propTypes = {
   step: PropTypes.number.isRequired,
   mistakesCount: PropTypes.number.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
-  onAnswer: PropTypes.func.isRequired
+  onAnswer: PropTypes.func.isRequired,
+  onResetGame: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -110,6 +130,9 @@ const mapDispatchToProps = (dispatch) => ({
   onAnswer(question, answer) {
     dispatch(ActionCreator.incrementMistakes(question, answer));
     dispatch(ActionCreator.incrementStep());
+  },
+  onResetGame() {
+    dispatch(ActionCreator.resetGame());
   }
 });
 
