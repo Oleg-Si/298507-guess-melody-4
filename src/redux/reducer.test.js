@@ -1,7 +1,7 @@
 import reducer from './reducer';
 import {ActionType} from './action-type';
 import {ActionCreator} from './action-creator';
-import {questionsForTest} from '../mocks/questions';
+import questions, {questionsForTest} from '../mocks/questions';
 
 describe(`Reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -10,7 +10,7 @@ describe(`Reducer work correctly`, () => {
       maxMistakesCount: 3,
       questionId: 0,
       step: -1,
-      questions: questionsForTest
+      questions
     });
   });
 
@@ -63,6 +63,21 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       step: -1,
       mistakesCount: 0,
+    });
+  });
+
+  it(`Reducer should reset game`, () => {
+    expect(reducer({
+      step: 2,
+      mistakesCount: 2,
+    }, {
+      type: ActionType.RESET_GAME
+    })).toEqual({
+      mistakesCount: 0,
+      maxMistakesCount: 3,
+      questionId: 0,
+      step: 0,
+      questions
     });
   });
 });
@@ -178,6 +193,12 @@ describe(`Action creators work correctly`, () => {
     }, [true, true, true, true])).toEqual({
       type: ActionType.INCREMENT_MISTAKES,
       payload: 1,
+    });
+  });
+
+  it(`Action creator for reser game returns correct action`, () => {
+    expect(ActionCreator.resetGame()).toEqual({
+      type: ActionType.RESET_GAME
     });
   });
 });

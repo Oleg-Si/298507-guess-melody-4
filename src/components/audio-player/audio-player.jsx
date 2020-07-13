@@ -1,81 +1,32 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import withAudio from '../../hocs/with-audio/with-audio.jsx';
 
-const customStyle = {
-  opacity: 0.5
+const AudioPlayer = (props) => {
+  const {isReady, isPlaying, children, onButtonClick} = props;
+
+  return (
+    <React.Fragment>
+      <button
+        className={`track__button ${isPlaying ? `track__button--pause` : `track__button--play`}`}
+        type="button"
+        style={!isReady ? {opacity: 0.5} : {}}
+        disabled={!isReady}
+        onClick={onButtonClick}
+      />
+      <div className="track__status">
+        {children}
+      </div>
+    </React.Fragment>
+  );
 };
-
-class AudioPlayer extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPlaying: props.isPlaying,
-      isReady: true
-    };
-
-    this._audioRef = React.createRef();
-  }
-
-  componentDidMount() {
-    const audio = this._audioRef.current;
-    audio.src = this.props.src;
-
-    audio.addEventListener(`canplay`, () => {
-      this.setState({isReady: false});
-    });
-  }
-
-  componentDidUpdate() {
-    const audio = this._audioRef.current;
-
-    if (this.props.isPlaying) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  }
-
-  componentWillUnmount() {
-    const audio = this._audioRef.current;
-    audio.src = ``;
-  }
-
-  _checkAudioReady() {
-    if (this.state.isReady) {
-      return customStyle;
-    }
-
-    return {};
-  }
-
-  _getButtonClassName() {
-    if (this.props.isPlaying) {
-      return `track__button--pause`;
-    }
-
-    return `track__button--play`;
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <button className={`track__button ${this._getButtonClassName()}`} type="button" style={this._checkAudioReady()} disabled={this.state.isReady} onClick={() => {
-          this.setState((prevState) => ({isPlaying: !prevState.isPlaying}));
-          this.props.onButtonClick();
-        }}></button>
-        <div className="track__status">
-          <audio ref={this._audioRef} autoPlay={this.state.isPlaying}></audio>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
 
 AudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
-  src: PropTypes.string.isRequired,
-  onButtonClick: PropTypes.func
+  isReady: PropTypes.bool.isRequired,
+  onButtonClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired
 };
 
-export default AudioPlayer;
+export {AudioPlayer};
+export default withAudio(AudioPlayer);

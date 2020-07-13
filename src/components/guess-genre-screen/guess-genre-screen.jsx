@@ -1,65 +1,38 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import withAudioPlayer from '../../hocs/with-audio-player.jsx';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player.jsx';
+import GenreQuestionItem from './../genre-question-item/genre-question-item.jsx';
+import withUserAnswer from './../../hocs/with-user-answer/with-user-answer.jsx';
 
-class GuessGenreScreen extends PureComponent {
-  constructor(props) {
-    super(props);
+const GuessGenreScreen = (props) => {
+  const {question, onSubmit, onChange, renderPlayer} = props;
+  const {genre, answers} = question;
 
-    this.state = {
-      answer: this._getAnswerTemplate()
-    };
-  }
+  return (
+    <section className="game__screen">
+      <h2 className="game__title">Выберите {genre} треки</h2>
+      <form className="game__tracks" onSubmit={(evt) => {
+        evt.preventDefault();
+        onSubmit();
+      }}>
 
-  _getAnswerTemplate() {
-    const count = this.props.question.answers.length;
-    const arr = [];
+        {answers.map((el, i) => {
+          return (
+            <GenreQuestionItem
+              key={el.id}
+              id={i}
+              answer={el}
+              renderPlayer={renderPlayer}
+              onChange={onChange}
+            />
+          );
+        })}
 
-    for (let i = 0; i < count; i++) {
-      arr.push(false);
-    }
-
-    return arr;
-  }
-
-  render() {
-    const {question, onAnswer, renderPlayer} = this.props;
-    const {genre, answers} = question;
-
-    return (
-      <section className="game__screen">
-        <h2 className="game__title">Выберите {genre} треки</h2>
-        <form className="game__tracks" onSubmit={(evt) => {
-          evt.preventDefault();
-          onAnswer(question, this.state.answer);
-        }}>
-
-          {answers.map((el, i) => {
-            return (
-              <div className="track" key={el.id}>
-
-                {renderPlayer(el.src, i)}
-
-                <div className="game__answer">
-                  <input className="game__input visually-hidden" type="checkbox" name="answer" value={el.genre} id={`answer-${el.id}`} onChange={() => {
-                    const oldState = this.state.answer;
-                    oldState[el.id] = !oldState[el.id];
-                    const newState = oldState;
-                    this.setState({answers: newState});
-                  }
-                  }/>
-                  <label className="game__check" htmlFor={`answer-${el.id}`}>Отметить</label>
-                </div>
-              </div>
-            );
-          })}
-
-          <button className="game__submit button" type="submit">Ответить</button>
-        </form>
-      </section>
-    );
-  }
-}
+        <button className="game__submit button" type="submit">Ответить</button>
+      </form>
+    </section>
+  );
+};
 
 GuessGenreScreen.propTypes = {
   question: PropTypes.shape({
@@ -73,9 +46,10 @@ GuessGenreScreen.propTypes = {
         }).isRequired
     ).isRequired
   }).isRequired,
-  onAnswer: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired
 };
 
 export const defaultGuessGenreScreen = GuessGenreScreen;
-export default withAudioPlayer(GuessGenreScreen);
+export default withActivePlayer(withUserAnswer(GuessGenreScreen));

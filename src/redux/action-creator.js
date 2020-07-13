@@ -24,7 +24,11 @@ export const ActionCreator = {
       type: ActionType.INCREMENT_MISTAKES,
       payload: answerIsCorrect ? 0 : 1
     };
-  }
+  },
+
+  resetGame: () => ({
+    type: ActionType.RESET_GAME
+  })
 };
 
 const isArtistAnswerCorrect = (question, userAnswer) => {

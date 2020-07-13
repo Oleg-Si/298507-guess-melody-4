@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withAudioPlayer from '../../hocs/with-audio-player.jsx';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player.jsx';
 
 const GuessArtistScreen = (props) => {
   const {question, onAnswer, renderPlayer} = props;
@@ -57,4 +57,4 @@ GuessArtistScreen.propTypes = {
 };
 
 export const defaultGuessArtistScreen = GuessArtistScreen;
-export default withAudioPlayer(GuessArtistScreen);
+export default withActivePlayer(GuessArtistScreen);
