@@ -1,6 +1,6 @@
-import {ActionCreator} from './action-creator';
-import {GameType} from './../constants';
-import {createArtistQuestions, createGenreQuestions} from '../adapter';
+import ActionCreator from './action-creator';
+import {GameType} from '../../../constants';
+import {createArtistQuestions, createGenreQuestions} from '../../../adapter';
 
 const Operations = {
   loadQuestions: () => (dispatch, getState, api) => {
@@ -13,7 +13,7 @@ const Operations = {
             return createGenreQuestions(el);
           }
 
-          return null;
+          return el;
         });
 
         dispatch(ActionCreator.loadQuestions(formattedData));

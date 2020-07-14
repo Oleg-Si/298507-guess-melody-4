@@ -1,7 +1,16 @@
-import {GameType} from '../constants';
-import {ActionType} from './action-type';
+import ActionType from './action-type';
+import {GameType} from '../../../constants';
 
-export const ActionCreator = {
+const isArtistAnswerCorrect = (question, userAnswer) => {
+  return userAnswer.artist === question.song.artist;
+};
+
+const isGenreAnswerCorrect = (question, userAnswer) => {
+  const correctAnswers = question.answers.map((el) => question.genre === el.genre);
+  return userAnswer.toString() === correctAnswers.toString();
+};
+
+const ActionCreator = {
   incrementStep: () => ({
     type: ActionType.INCREMENT_STEP,
     payload: 1
@@ -28,19 +37,7 @@ export const ActionCreator = {
 
   resetGame: () => ({
     type: ActionType.RESET_GAME
-  }),
-
-  loadQuestions: (questions) => ({
-    type: ActionType.LOAD_QUESTIONS,
-    payload: questions
   })
 };
 
-const isArtistAnswerCorrect = (question, userAnswer) => {
-  return userAnswer.artist === question.song.artist;
-};
-
-const isGenreAnswerCorrect = (question, userAnswer) => {
-  const correctAnswers = question.answers.map((el) => question.genre === el.genre);
-  return userAnswer.toString() === correctAnswers.toString();
-};
+export default ActionCreator;
