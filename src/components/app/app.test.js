@@ -24,6 +24,8 @@ it(`Render WelcomeScreen`, () => {
           questions={questionsForTest}
           onAnswer={() => {}}
           onResetGame={() => {}}
+          login={() => {}}
+          authorizationStatus={`NO_AUTH`}
           mistakesCount={3}
           step={-1}
         />
@@ -47,6 +49,8 @@ it(`Render GenreGameScreen`, () => {
           questions={questionsForTest}
           onAnswer={() => {}}
           onResetGame={() => {}}
+          login={() => {}}
+          authorizationStatus={`NO_AUTH`}
           mistakesCount={1}
           step={0}
         />
@@ -75,6 +79,8 @@ it(`Render ArtistGameScreen`, () => {
           questions={questionsForTest}
           onAnswer={() => {}}
           onResetGame={() => {}}
+          login={() => {}}
+          authorizationStatus={`NO_AUTH`}
           mistakesCount={1}
           step={1}
         />
