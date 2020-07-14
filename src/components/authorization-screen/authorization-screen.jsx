@@ -15,8 +15,8 @@ class AuthorizationScreen extends PureComponent {
     const {onSubmit} = this.props;
     const form = this._formRef.current;
 
-    const password = form.querySelector(`#password`);
-    const name = form.querySelector(`#name`);
+    const password = form.querySelector(`#password`).value;
+    const name = form.querySelector(`#name`).value;
 
     onSubmit({
       login: name,
