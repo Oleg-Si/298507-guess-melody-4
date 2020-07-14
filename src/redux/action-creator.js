@@ -28,6 +28,11 @@ export const ActionCreator = {
 
   resetGame: () => ({
     type: ActionType.RESET_GAME
+  }),
+
+  loadQuestions: (questions) => ({
+    type: ActionType.LOAD_QUESTIONS,
+    payload: questions
   })
 };
 

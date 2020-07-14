@@ -1,13 +1,13 @@
 import {extend} from '../utils';
 import {ActionType} from './action-type';
-import questions from '../mocks/questions';
+// import questions from '../mocks/questions';
 
 const initialState = {
   mistakesCount: 0,
   maxMistakesCount: 3,
   questionId: 0,
   step: -1,
-  questions
+  questions: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +22,9 @@ const reducer = (state = initialState, action) => {
       return extend(initialState, {
         step: 0
       });
+
+    case ActionType.LOAD_QUESTIONS:
+      return extend(state, {questions: action.payload});
   }
 
   return state;
