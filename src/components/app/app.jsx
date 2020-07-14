@@ -7,10 +7,12 @@ import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen.jsx';
 import {GameType} from './../../constants';
 import GameScreen from '../game-screen/game-screen.jsx';
 import {connect} from "react-redux";
-import {ActionCreator} from '../../redux/action-creator';
+import ActionCreator from '../../redux/reducer/game/action-creator';
 import {GameSettings} from './../../game-settings';
 import GameOverScreen from '../game-over-screen/game-over-screen.jsx';
 import GameWinScreen from '../game-win-screen/game-win-screen.jsx';
+import {getStep, getMistakesCount} from './../../redux/reducer/game/selectors';
+import {getQuestions} from './../../redux/reducer/data/selectors';
 
 class App extends PureComponent {
   _renderGame() {
@@ -118,9 +120,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  step: state.step,
-  mistakesCount: state.mistakesCount,
-  questions: state.questions
+  step: getStep(state),
+  mistakesCount: getMistakesCount(state),
+  questions: getQuestions(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
