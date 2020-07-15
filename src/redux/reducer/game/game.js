@@ -1,13 +1,10 @@
-import {extend} from '../utils';
-import {ActionType} from './action-type';
-import questions from '../mocks/questions';
+import {extend} from '../../../utils.js';
+import ActionType from './action-type';
 
 const initialState = {
   mistakesCount: 0,
   maxMistakesCount: 3,
-  questionId: 0,
-  step: -1,
-  questions
+  step: -1
 };
 
 const reducer = (state = initialState, action) => {

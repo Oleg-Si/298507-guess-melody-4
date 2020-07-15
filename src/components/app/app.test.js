@@ -4,6 +4,7 @@ import {App} from './app.jsx';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {questionsForTest} from '../../mocks/questions.js';
+import NameSpace from './../../redux/reducer/name-space';
 
 const mockStore = configureStore({});
 
@@ -11,7 +12,9 @@ const onWelcomeButtonClick = () => {};
 
 it(`Render WelcomeScreen`, () => {
   const store = mockStore({
-    mistakesCount: 0,
+    [NameSpace.GAME]: {
+      mistakesCount: 0
+    }
   });
 
   const tree = renderer.create(
@@ -32,7 +35,9 @@ it(`Render WelcomeScreen`, () => {
 
 it(`Render GenreGameScreen`, () => {
   const store = mockStore({
-    mistakesCount: 0,
+    [NameSpace.GAME]: {
+      mistakesCount: 0
+    }
   });
 
   const tree = renderer.create(
@@ -58,7 +63,9 @@ it(`Render GenreGameScreen`, () => {
 
 it(`Render ArtistGameScreen`, () => {
   const store = mockStore({
-    mistakesCount: 0,
+    [NameSpace.GAME]: {
+      mistakesCount: 0
+    }
   });
 
   const tree = renderer.create(

@@ -1,5 +1,7 @@
-export const ActionType = {
+const ActionType = {
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   INCREMENT_STEP: `INCREMENT_STEP`,
   RESET_GAME: `RESET_GAME`
 };
+
+export default ActionType;
