@@ -21,14 +21,20 @@ const withAudio = (Component) => {
       audio.addEventListener(`canplay`, () => {
         this.setState({isReady: true});
       });
+
+      audio.onplay = () => {
+        this.setState({
+          isPlaying: true,
+        });
+      };
+
+      audio.onpause = () => this.setState({
+        isPlaying: false,
+      });
     }
 
     componentDidUpdate() {
       const audio = this._audioRef.current;
-
-      if (this.props.isPlaying !== this.state.isPlaying) {
-        this.setState({isPlaying: this.props.isPlaying});
-      }
 
       if (this.props.isPlaying) {
         audio.play();
@@ -51,7 +57,10 @@ const withAudio = (Component) => {
           {...this.props}
           isPlaying={isPlaying}
           isReady={isReady}
-          onButtonClick={onButtonClick}
+          onButtonClick={() => {
+            this.setState({isPlaying: !isPlaying});
+            onButtonClick();
+          }}
         >
           <audio
             ref={this._audioRef}
