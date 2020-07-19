@@ -71,10 +71,26 @@ it(`Reducer should reset game`, () => {
     maxMistakesCount: 3,
     step: 2
   }, {
-    type: ActionType.RESET_GAME
+    type: ActionType.RESET_GAME,
+    payload: 0
   })).toEqual({
     mistakesCount: 0,
     maxMistakesCount: 3,
     step: 0
+  });
+});
+
+it(`Reducer should reset game and go home`, () => {
+  expect(reducer({
+    mistakesCount: 2,
+    maxMistakesCount: 3,
+    step: 2
+  }, {
+    type: ActionType.RESET_GAME,
+    payload: -1
+  })).toEqual({
+    mistakesCount: 0,
+    maxMistakesCount: 3,
+    step: -1
   });
 });

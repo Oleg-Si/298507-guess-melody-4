@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.RESET_GAME:
       return extend(initialState, {
-        step: 0
+        step: action.payload
       });
   }
 
