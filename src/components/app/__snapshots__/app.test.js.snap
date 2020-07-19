@@ -9,7 +9,8 @@ exports[`Render ArtistGameScreen 1`] = `
   >
     <a
       className="game__back"
-      href="#"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"
@@ -167,7 +168,8 @@ exports[`Render GenreGameScreen 1`] = `
   >
     <a
       className="game__back"
-      href="#"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"

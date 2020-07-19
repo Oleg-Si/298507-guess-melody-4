@@ -73,12 +73,12 @@ exports[`AuthorizationScreen should render correct 1`] = `
       Войти
     </button>
   </form>
-  <button
+  <a
     className="replay"
+    href="/"
     onClick={[Function]}
-    type="button"
   >
     Сыграть ещё раз
-  </button>
+  </a>
 </section>
 `;

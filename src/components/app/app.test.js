@@ -5,6 +5,7 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {questionsForTest} from '../../mocks/questions.js';
 import NameSpace from './../../redux/reducer/name-space';
+import {AuthorizationStatus} from '../../constants.js';
 
 const mockStore = configureStore({});
 
@@ -14,7 +15,10 @@ it(`Render WelcomeScreen`, () => {
   const store = mockStore({
     [NameSpace.GAME]: {
       mistakesCount: 0
-    }
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+    },
   });
 
   const tree = renderer.create(
@@ -25,6 +29,7 @@ it(`Render WelcomeScreen`, () => {
           onAnswer={() => {}}
           onResetGame={() => {}}
           login={() => {}}
+          goHome={() => {}}
           authorizationStatus={`NO_AUTH`}
           mistakesCount={3}
           step={-1}
@@ -50,6 +55,7 @@ it(`Render GenreGameScreen`, () => {
           onAnswer={() => {}}
           onResetGame={() => {}}
           login={() => {}}
+          goHome={() => {}}
           authorizationStatus={`NO_AUTH`}
           mistakesCount={1}
           step={0}
@@ -80,6 +86,7 @@ it(`Render ArtistGameScreen`, () => {
           onAnswer={() => {}}
           onResetGame={() => {}}
           login={() => {}}
+          goHome={() => {}}
           authorizationStatus={`NO_AUTH`}
           mistakesCount={1}
           step={1}
