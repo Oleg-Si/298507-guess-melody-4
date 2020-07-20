@@ -114,8 +114,16 @@ it(`Action creator for incrementing mistake returns action with 1 payload if ans
   });
 });
 
-it(`Action creator for reser game returns correct action`, () => {
-  expect(ActionCreator.resetGame()).toEqual({
-    type: ActionType.RESET_GAME
+it(`Action creator for reset game returns correct action`, () => {
+  expect(ActionCreator.resetGame(0)).toEqual({
+    type: ActionType.RESET_GAME,
+    payload: 0
+  });
+});
+
+it(`Action creator for reset game returns correct action`, () => {
+  expect(ActionCreator.resetGame(-1)).toEqual({
+    type: ActionType.RESET_GAME,
+    payload: -1
   });
 });

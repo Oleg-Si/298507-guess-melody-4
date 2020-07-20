@@ -35,8 +35,9 @@ const ActionCreator = {
     };
   },
 
-  resetGame: () => ({
-    type: ActionType.RESET_GAME
+  resetGame: (step) => ({
+    type: ActionType.RESET_GAME,
+    payload: step
   })
 };
 
