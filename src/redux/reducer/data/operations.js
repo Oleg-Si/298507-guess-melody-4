@@ -1,5 +1,5 @@
 import ActionCreator from './action-creator';
-import {GameType} from '../../../constants';
+import {GameType} from '../../../types';
 import {createArtistQuestions, createGenreQuestions} from '../../../adapter';
 
 const Operations = {
