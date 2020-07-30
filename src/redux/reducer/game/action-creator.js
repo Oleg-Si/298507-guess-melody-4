@@ -1,5 +1,5 @@
 import ActionType from './action-type';
-import {GameType} from '../../../constants';
+import {GameType} from '../../../types';
 
 const isArtistAnswerCorrect = (question, userAnswer) => {
   return userAnswer.artist === question.song.artist;
